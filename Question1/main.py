@@ -43,8 +43,22 @@ def validate_json_data_and_assign_serial_numbers(data):
     for hub in data["Internet_hubs"]:
         hub_id = hub["id"]
         print(hub_id)
+        
+        # Ensure the id is a string and ends with a digit
+        if not isinstance(hub_id, str) and not re.match(r'.*\d$', hub_id) and isinstance(hub_id[2], int):
+            raise ValueError(f"Invalid id format: '{hub_id}'")
+       
+        else:
+            print("pass")
+        """
+        # Update the hub with the new serial number
+        cleaned_hub = {
+            "id": hub_id,
+            "serial_number": serial_number
+        }
+        
 
-
+"""
 
 
 validate_json_data_and_assign_serial_numbers(data)
